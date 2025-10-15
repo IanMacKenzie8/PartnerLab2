@@ -1,3 +1,13 @@
+// Partner Lab# 2
+
+// Group# 3
+
+// Names: Hasan Dababo, Ian Mackenzie
+
+// Date: 10/10/2025
+
+
+
 import SwiftUI
 
 struct GameView: View {
