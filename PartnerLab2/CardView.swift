@@ -19,7 +19,7 @@ struct CardView: View {
     var body: some View {
 
         ZStack {
-
+            // main rounded rectangle for the card
             RoundedRectangle(cornerRadius: 18, style: .continuous)
 
                 .fill((card.isFaceUp || card.isMatched) ? Color.wheat : Color.pumpkin)
@@ -35,7 +35,7 @@ struct CardView: View {
                 .shadow(color: Color.dusk.opacity(0.35), radius: 8, y: 6)
 
 
-
+            // light gradient shine effect for face-down cards
             if !card.isFaceUp && !card.isMatched {
 
                 RoundedRectangle(cornerRadius: 18, style: .continuous)
@@ -67,7 +67,7 @@ struct CardView: View {
         }
 
         .padding(4)
-
+        // card flip animation
         .rotation3DEffect(.degrees(card.isFaceUp || card.isMatched ? 0 : 180), axis: (x: 0, y: 1, z: 0))
 
         .animation(.easeInOut(duration: 0.28), value: card.isFaceUp)
