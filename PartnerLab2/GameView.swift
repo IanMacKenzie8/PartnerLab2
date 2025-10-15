@@ -13,6 +13,7 @@ import SwiftUI
 struct GameView: View {
     @StateObject private var vm = GameViewModel()
 
+    // sets up 3 card columns for the grid
     private let columns = [
         GridItem(.flexible(), spacing: 14),
         GridItem(.flexible(), spacing: 14),
@@ -20,6 +21,7 @@ struct GameView: View {
     ]
 
     var body: some View {
+         // fall-themed gradient background
         ZStack {
             LinearGradient(
                 colors: [Color.dusk, Color.cedar, Color.maple, Color.pumpkin],
@@ -30,7 +32,7 @@ struct GameView: View {
 
             VStack(spacing: 18) {
                 TitleBar(moves: vm.moves, pairs: vm.pairsFound, total: vm.totalPairs)
-
+                // grid that shows all cards
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(vm.cards) { card in
