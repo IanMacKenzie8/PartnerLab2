@@ -11,10 +11,12 @@ import SwiftUI
 import Combine
 
 final class GameViewModel: ObservableObject {
+     // published properties to update the UI automatically
     @Published private(set) var cards: [Card] = []
     @Published private(set) var moves: Int = 0
     @Published private(set) var pairsFound: Int = 0
 
+    // emojis for the fall theme
     private let theme: [String] = [
         "🍁","🍂","🎃","🌰","🧣","🦊","🥧","☕️","🪵","🕯️","🦃","🌾"
     ]
@@ -24,7 +26,7 @@ final class GameViewModel: ObservableObject {
     init() { restart() }
 
     var totalPairs: Int { cards.count / 2 }
-
+    // find tapped card, ignore if already matched or face up
     func flip(_ card: Card) {
         guard let idx = cards.firstIndex(where: { $0.id == card.id }),
               !cards[idx].isMatched, !cards[idx].isFaceUp else { return }
@@ -39,6 +41,7 @@ final class GameViewModel: ObservableObject {
                 pairsFound += 1
                 indexOfFirstFlipped = nil
             } else {
+                // flip both back after short delay if not matched
                 let firstIndex = first
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
                     guard let self = self else { return }
