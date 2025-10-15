@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-
+// makes it easier to create custom colors using RGB values
 
 extension Color {
 
